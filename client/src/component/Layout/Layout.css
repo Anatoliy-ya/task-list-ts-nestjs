@@ -1,0 +1,8 @@
+.layout_container {
+  flex-grow: 1;
+  background-color: rgba(147, 188, 190, 0.527);
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+}

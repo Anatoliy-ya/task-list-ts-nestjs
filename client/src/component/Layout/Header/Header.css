@@ -1,0 +1,27 @@
+.header_container {
+  text-align: center;
+  border-bottom: 1px solid black;
+  box-shadow: 0px 5px 7px 1px rgb(77, 77, 77);
+  background-color: rgb(252, 252, 252);
+}
+
+.header_task {
+  font-size: 1.6rem;
+  padding: 1rem;
+}
+
+.button_logout {
+  text-align: right;
+}
+
+.login_container {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.reg_container {
+  position: absolute;
+  top: 1rem;
+  right: 6rem;
+}

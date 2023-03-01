@@ -1,0 +1,29 @@
+.todo_panel {
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0px 5px 8px 0px;
+  margin-top: 2rem;
+  border-radius: 5px;
+  margin-inline: 3rem;
+  background-color: rgb(252, 252, 252);
+}
+
+.description {
+  height: 2rem;
+}
+
+.todo_panel label {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.todo_panel input {
+  border-radius: 5px;
+  padding: 0.3rem;
+  width: 70%;
+  border: 1px solid;
+}
+
+.date {
+  width: 30% !important;
+}

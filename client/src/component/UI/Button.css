@@ -1,0 +1,120 @@
+.button {
+  cursor: pointer;
+  padding: 0.6rem 1rem;
+  margin: 0.5rem;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  font-weight: bolder;
+}
+
+.button_disabled_add {
+  border: 1px solid rgb(179, 179, 179);
+  cursor: not-allowed;
+}
+
+.button_disabled_add:hover {
+  border: 1px solid rgb(255, 255, 255) !important ;
+  color: rgb(255, 255, 255) !important ;
+  background-color: rgb(179, 179, 179) !important;
+}
+.button_update {
+  font-weight: bolder;
+  cursor: pointer;
+  padding: 0.6rem 0.7rem;
+  margin-top: 0.5rem;
+  margin: 0.5rem 0rem;
+  border: 1px solid rgb(248, 106, 40);
+  border-radius: 15px 0px 0px 15px;
+  background-color: rgb(255, 255, 255);
+}
+
+.button_update:hover {
+  border: 1px solid rgb(255, 255, 255) !important ;
+  color: rgb(255, 255, 255) !important ;
+  padding: 0.6rem 0.7rem !important;
+  background-color: rgb(255, 144, 41) !important;
+}
+
+.button_update_disabled {
+  font-weight: bolder;
+  cursor: pointer;
+  padding: 0.6rem 0.7rem;
+  margin-top: 0.5rem;
+  margin: 0.5rem 0rem;
+  border: 1px solid rgb(248, 106, 40);
+  border-radius: 15px 0px 0px 15px;
+  background-color: rgb(255, 255, 255);
+  cursor: not-allowed;
+}
+.button_update_disabled:hover {
+  border: 1px solid rgb(255, 255, 255) !important ;
+  color: rgb(255, 255, 255) !important ;
+  padding: 0.6rem 0.7rem !important;
+  background-color: rgb(179, 179, 179) !important;
+}
+
+.button_clear {
+  border-radius: 0px 15px 15px 0px;
+  border: 1px solid rgb(248, 106, 40);
+  font-weight: bolder;
+  cursor: pointer;
+  padding: 0.6rem 1rem;
+  margin-top: 0.5rem;
+  margin: 0.5rem 0rem;
+  background-color: rgb(255, 255, 255);
+}
+
+.button_clear:hover {
+  border: 1px solid rgb(255, 255, 255) !important ;
+  color: rgb(255, 255, 255);
+  background-color: rgb(97, 178, 250);
+}
+
+.button_red {
+  border: 1px solid rgb(245, 0, 0);
+  color: red;
+}
+
+.button_red:hover {
+  border: 1px solid rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  background-color: rgb(243, 104, 104);
+  box-shadow: 0px 0px 6px 1px rgb(255, 17, 0);
+}
+
+.button_orange {
+  border: 1px solid rgb(248, 106, 40);
+  color: rgb(255, 136, 0);
+}
+
+.button_orange:hover {
+  border: 1px solid rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 0px 6px 0px rgb(255, 115, 0);
+}
+
+.button_blue {
+  border: 1px solid rgb(2, 40, 211);
+  color: rgb(0, 153, 255);
+  margin-top: 1rem;
+}
+
+.button_blue:hover {
+  background-color: rgb(97, 178, 250);
+  color: rgb(255, 255, 255);
+}
+
+.button_logout {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+}
+
+.button_logout:hover {
+  text-shadow: 0px 0px 12px rgb(255, 0, 0);
+}
+
+.button_cancel {
+  margin: 0rem;
+  margin-bottom: 1rem;
+}

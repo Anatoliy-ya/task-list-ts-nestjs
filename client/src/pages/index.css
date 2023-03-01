@@ -1,0 +1,35 @@
+.span_task {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  animation: span-tsk 5s ease-out forwards;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+  min-height: 43vh;
+}
+
+@keyframes span-tsk {
+  from {
+    text-shadow: 0px 0px 15px rgb(238, 255, 0);
+    color: mediumpurple;
+  }
+  25% {
+    color: rgb(255, 0, 0);
+    text-shadow: 0px 0px 10px rgb(0, 132, 255);
+  }
+  50% {
+    color: aliceblue;
+    text-shadow: 0px 0px 10px rgb(0, 4, 255);
+  }
+  75% {
+    color: rgb(70, 69, 69);
+    text-shadow: 0px 0px 15px rgb(1, 241, 53);
+  }
+  to {
+    color: limegreen;
+    text-shadow: 0px 0px 15px rgb(255, 0, 64);
+  }
+}

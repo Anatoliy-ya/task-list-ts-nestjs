@@ -1,0 +1,55 @@
+.input_mail {
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  width: 50%;
+  height: 1.4rem;
+}
+
+.mail {
+  padding: 0.3rem;
+}
+
+.password {
+  padding: 0.3rem;
+}
+
+.input_mail_error {
+  border: 2px solid red;
+  border-radius: 5px;
+  width: 50%;
+  height: 1.4rem;
+}
+
+.input_password {
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 50%;
+  height: 1.4rem;
+}
+
+.input_password_error {
+  border: 2px solid red;
+  border-radius: 5px;
+  width: 50%;
+  height: 1.4rem;
+}
+
+.registration {
+  font-size: 2rem;
+  padding: 1rem;
+  text-shadow: 0px 0px 15px green;
+}
+
+.span_error {
+  color: red;
+  font-size: 1.3rem;
+  border: 1px solid red;
+  border-radius: 10px;
+  padding: 2px;
+}
+
+.span_creat {
+  color: rgb(0, 168, 0);
+  font-size: 2rem;
+  text-shadow: 5px 5px 10px;
+}
