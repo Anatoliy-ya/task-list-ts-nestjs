@@ -19,7 +19,7 @@ export class TasksService {
     return tasks;
   }
 
-  async getOne(id: ObjectId) {
+  async getOne(id: ObjectId): Promise<Task | null> {
     const task = await this.taskModel.findById(id);
     return task;
   }

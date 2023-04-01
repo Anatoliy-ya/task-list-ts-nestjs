@@ -1,71 +1,109 @@
-import axios from 'axios';
-import React, { useState, useMemo, useEffect, Dispatch } from 'react';
-import { TODO_LIST } from '../../Todo_list_types';
-import { API } from '../Api/Api';
-import { TaskContext } from './TaskContext';
+import axios, { AxiosResponse } from "axios";
+import React, { useState, useMemo, useEffect, Dispatch } from "react";
+import { TODO_LIST } from "../../Todo_list_types";
+import { API } from "../Api/Api";
+import { TaskContext } from "./TaskContext";
 
 interface TaskProviderProps {
   children: React.ReactNode;
 }
 
-const TODO_LIST_STATE: Array<TODO_LIST> = [];
-
 export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
-  const [tasks, setTasks] = useState(TODO_LIST_STATE);
-  const [taskIdForEdit, setTaskIdForEdit] = useState<Task['id'] | null>(null);
+  const [tasks, setTasks] = useState<Array<TODO_LIST>>([]);
+  const [taskIdForEdit, setTaskIdForEdit] = useState<Task["id"] | null>(null);
   const [allIsValid, setAllIsValid] = useState<boolean>(true);
   const [theme, setTheme] = useState<boolean>(true);
 
-  const fetchPost = async (data: TODO_LIST) => {
-    await fetch(API, {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      headers: {
-        'Content-Type': 'application/json',
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: JSON.stringify(data), // body data type must match "Content-Type" header
-    })
+  useEffect(() => {
+    axios
+      .get<Array<TODO_LIST>>(API)
       .then((response) => {
-        return response.json();
+        setTasks(response.data);
+        console.log("get all: ", response.data);
       })
-      .then((data) => {
-        return console.log(data);
+      .catch((error) => {
+        console.error("Error fetching todo list:", error);
       });
-  };
+  }, []);
 
-  const addNewTask = ({ task, description, date }: Omit<Task, 'id' | 'checker'>) => {
-    const idNum = Math.random().toString();
-    setTasks([
-      ...tasks,
-      {
-        id: Math.random().toString(),
+  const addNewTask = async ({
+    task,
+    description,
+    date,
+  }: Omit<Task, "id" | "checker">) => {
+    try {
+      const response = await axios.post<TODO_LIST>(API, {
+        id: Math.ceil(Math.random() * 10000000000).toString(),
         task: task,
         description: description,
         checker: false,
         date: date,
-      },
-    ]);
-    fetchPost({
-      id: idNum,
-      task: task,
-      description: description,
-      checker: false,
-      date: date,
-    });
+      });
+      console.log(response.data); // the new todo object returned by the server
+      axios
+        .get<Array<TODO_LIST>>(API)
+        .then((response) => {
+          setTasks(response.data);
+          console.log("get all: ", response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching todo list:", error);
+        });
+    } catch (error) {
+      console.error(error);
+    }
+
+    // setTasks([
+    //   ...tasks,
+    //   {
+    //     id: Math.random().toString(),
+    //     task: task,
+    //     description: description,
+    //     checker: false,
+    //     date: date,
+    //   },
+    // ]);
+    // fetchPost({
+    //   id: Math.random().toString(),
+    //   task: task,
+    //   description: description,
+    //   checker: false,
+    //   date: date,
+    // });
   };
 
-  const checkTask = (id: Task['id']) => {
-    setTasks(
-      tasks.map((task) => {
-        if (task.id === id) {
-          return { ...task, checker: !task.checker };
-        }
-        return task;
-      }),
-    );
+  const checkTask = async (id: Task["id"]) => {
+    try {
+      const todoToUpdate = tasks.find((todo: Task) => todo.id === id);
+      console.log("todoToUpdate: ", todoToUpdate);
+
+      // @ts-ignore
+      const updatedTodo = { ...todoToUpdate, checker: !todoToUpdate.checker };
+      console.log("updateTodo: ", updatedTodo);
+
+      const response = await axios.put<TODO_LIST>(`API/${id}`, updatedTodo);
+
+      const newTodos = tasks.map((todo) =>
+        todo.id === id ? response.data : todo
+      );
+      setTasks(newTodos);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const deleteTask = (id: Task['id']) => {
+  // const checkTask = async (id: Task["id"]) => {
+  //   // setTasks(
+  //   //   tasks.map((task) => {
+  //   //     if (task.id === id) {
+  //   //       return { ...task, checker: !task.checker };
+  //   //     }
+  //   //     return task;
+  //   //   })
+  //   // );
+  // };
+
+  const deleteTask = (id: Task["id"]) => {
     const delTask = tasks.filter((task) => {
       return task.id !== id;
     });
@@ -73,18 +111,22 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
     setTasks(delTask);
   };
 
-  const selectIdTask = (id: Task['id']) => {
+  const selectIdTask = (id: Task["id"]) => {
     setTaskIdForEdit(id);
   };
 
-  const modifiedTask = ({ task, description, date }: Omit<Task, 'id' | 'checker'>) => {
+  const modifiedTask = ({
+    task,
+    description,
+    date,
+  }: Omit<Task, "id" | "checker">) => {
     setTasks(
       tasks.map((tsk) => {
         if (tsk.id === taskIdForEdit) {
           return { ...tsk, task, description, date };
         }
         return tsk;
-      }),
+      })
     );
     setTaskIdForEdit(null);
   };
@@ -101,7 +143,7 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
 
   const logIn = (login: boolean) => {
     setAllIsValid(login);
-    console.log('@logIn: ', login);
+    console.log("@logIn: ", login);
   };
 
   const value = useMemo(
@@ -130,7 +172,7 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
       LogInOut,
       logIn,
       allIsValid,
-    ],
+    ]
   );
 
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;

@@ -1,4 +1,18 @@
-export const API = 'http://localhost:3300/tasks';
+import axios from "axios";
+
+export const API = "http://localhost:3300/tasks";
+
+export const axiosClassic = axios.create({
+  baseURL: process.env.SERVER_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+const getAll = async () => {
+  const todos = await axios.get(API);
+  console.log(todos.data);
+};
 
 // const fetchApi = async (api = '') => {
 //   await fetch(api, {

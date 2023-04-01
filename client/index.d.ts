@@ -4,4 +4,4 @@ type Task = {
   description: string;
   checker: boolean;
   date: date;
-}
+};

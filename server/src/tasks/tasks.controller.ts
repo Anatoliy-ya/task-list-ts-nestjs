@@ -31,7 +31,7 @@ export class TasksController {
   }
 
   @Get()
-  getAll() {
+  getAll(): Promise<Task[]> {
     return this.tasksService.getAll();
   }
 
